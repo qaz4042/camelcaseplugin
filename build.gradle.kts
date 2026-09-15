@@ -50,6 +50,10 @@ intellijPlatform {
     buildSearchableOptions = false
     instrumentCode = true
 
+    publishing {
+        token = providers.environmentVariable("JETBRAINS_MARKETPLACE_TOKEN")
+    }
+
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "262"

@@ -47,3 +47,16 @@ the original CamelCase plugin while both are being compared.
 
 The original project is MIT-licensed; this fork retains that license and credits
 the upstream project.
+
+## Marketplace publishing
+
+Create a plugin entry at [JetBrains Marketplace](https://plugins.jetbrains.com/),
+choose `CamelCaseFix`, and upload the ZIP from `build/distributions/`. For later
+releases, create a Marketplace upload token and run:
+
+```sh
+export JETBRAINS_MARKETPLACE_TOKEN="..."
+LOCAL_IDE_PATH="/Applications/IntelliJ IDEA.app/Contents" ./gradlew publishPlugin
+```
+
+The first Marketplace submission still requires the web form and JetBrains review.
