@@ -8,6 +8,8 @@ plugins {
 group = "io.github.qaz4042"
 version = "1.0.0"
 
+val localIdePath = providers.environmentVariable("LOCAL_IDE_PATH").orNull
+
 repositories {
     mavenCentral()
     intellijPlatform {
@@ -25,7 +27,11 @@ sourceSets {
 
 dependencies {
     intellijPlatform {
-        intellijIdea("2026.2.2.1")
+        if (localIdePath != null) {
+            local(localIdePath)
+        } else {
+            intellijIdea("2026.2.2.1")
+        }
         testFramework(TestFrameworkType.Platform)
     }
 }
@@ -42,7 +48,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 intellijPlatform {
     buildSearchableOptions = false
-    instrumentCode = false
+    instrumentCode = true
 
     pluginConfiguration {
         ideaVersion {

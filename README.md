@@ -27,6 +27,12 @@ The repository produces a complete Marketplace-style plugin ZIP from source:
 ./gradlew buildPlugin
 ```
 
+With an installed IntelliJ IDEA, avoid downloading the platform distribution:
+
+```sh
+LOCAL_IDE_PATH="/Applications/IntelliJ IDEA.app/Contents" ./gradlew buildPlugin
+```
+
 The output is under `build/distributions/`. The build targets IntelliJ platform
 build 262 and later, which includes IntelliJ IDEA 2026.2.
 
