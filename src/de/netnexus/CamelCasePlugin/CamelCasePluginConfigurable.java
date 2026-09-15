@@ -48,13 +48,13 @@ public class CamelCasePluginConfigurable implements SearchableConfigurable {
     @Nullable
     @Override
     public String getHelpTopic() {
-        return "preference.CamelCasePluginConfigurable";
+        return "io.github.qaz4042.camelcasefix.preferences";
     }
 
     @NotNull
     @Override
     public String getId() {
-        return "preference.CamelCasePluginConfigurable";
+        return "io.github.qaz4042.camelcasefix.preferences";
     }
 
     @Nullable

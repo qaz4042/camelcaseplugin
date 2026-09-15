@@ -1,49 +1,43 @@
-# Camel Case Plugin
-CamelCasePlugin for IntelliJ IDEs (e.g. PhpStorm, IntelliJ IDEA, ...)
+# CamelCaseFix
+
+`CamelCaseFix` is a community-maintained fork of the original CamelCase plugin
+for IntelliJ IDEs. It fixes the missing `WordUtils` dependency on modern IDEs.
 
 Switch easily between kebab-case, SNAKE_CASE, PascalCase, camelCase, snake_case or space case. See Edit menu or use ⇧ + ⌥ + U / Shift + Alt + U.
 
 Allows to disable some conversions or change their order in the preferences.
 
-Please see this example for a demonstration:
+Source and issue tracker: https://github.com/qaz4042/camelcaseplugin
+
+Please see the original example for a demonstration:
 
 ![Demonstration](https://github.com/user-attachments/assets/72001e9b-402d-4971-8a82-3375c70d858d)
 
 ## Install
-Use your IDE. Preferences/Plugins/Browse repositories and search for "camelcase".
 
-## Build
-Just clone this repo and open the project it in IntelliJ IDEA.
+Install `CamelCaseFix` from the JetBrains Marketplace when it is approved, or
+use the ZIP produced by the build below through **Settings → Plugins → Install
+Plugin from Disk…**.
 
-### Local WordUtils hotfix (IDEA 2026.2)
+## Build from source
 
-The conversion code now capitalizes words without Apache Commons Lang, fixing
-[upstream #36](https://github.com/netnexus/camelcaseplugin/issues/36).
-
-On macOS, build and test with the installed IDEA JDK and original CamelCase 3.0.12.
-Download the original Marketplace artifact once (or pass its path with `--base-jar`):
+The repository produces a complete Marketplace-style plugin ZIP from source:
 
 ```sh
-mkdir -p build/base
-curl -fL -o build/base/CamelCasePlugin-3.0.12.jar https://plugins.jetbrains.com/files/7160/153616/CamelCasePlugin.jar
-python3 scripts/build-local.py
+./gradlew buildPlugin
 ```
 
-Optional arguments: `--ide /path/to/IDE.app/Contents` and `--base-jar /path/to/CamelCasePlugin.jar`.
-Keep a copy of the original 3.0.12 JAR for rebuilding and rollback.
+The output is under `build/distributions/`. The build targets IntelliJ platform
+build 262 and later, which includes IntelliJ IDEA 2026.2.
 
-This is a hotfix package, not a full source build: the script replaces only
-`Conversion.class` and updates the version/platform metadata in the original JAR.
-For packaging it uses `scripts/compat-3.0.12/.../Conversion.java`, taken from
-upstream commit `dfb9512` with only the WordUtils replacement. The current upstream
-source uses a different method signature and cannot replace the released class.
-It preserves the original compiled settings UI because the checked-in generated
-UI source is stale. Tests run without Commons Lang, and all other JAR entries
-are checked for identical content. A separate test is compiled against the original
-JAR and executed against the finished package to verify binary compatibility.
-The installed plugin is not modified.
+For the original plugin's binary-compatible 3.0.12 hotfix, the repository also
+contains `scripts/build-local.py`. It is kept for rollback and upstream debugging;
+the Marketplace artifact should be built with `./gradlew buildPlugin`.
 
-Output: `build/distributions/CamelCasePlugin-3.0.12.2-local.jar` (IDE build 262+).
-Do not install `3.0.12.1-local`: that earlier package has an incompatible method signature.
-Install via **Settings → Plugins → ⚙ → Install Plugin from Disk…**, then restart.
-The plugin ID is unchanged, so this replaces CamelCase rather than adding a second action.
+The independent plugin output is `build/distributions/camelcasefix-1.0.0.zip`.
+Install it via **Settings → Plugins → ⚙ → Install Plugin from Disk…**, then restart.
+The plugin ID is `io.github.qaz4042.camelcasefix`, so it can be installed beside
+the original CamelCase plugin while both are being compared.
+
+The original project is MIT-licensed; this fork retains that license and credits
+the upstream project.

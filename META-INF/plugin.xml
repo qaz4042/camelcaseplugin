@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>de.netnexus.camelcaseplugin</id>
-    <name>CamelCase</name>
-    <version>3.0.12</version>
-    <vendor email="info@netnexus.de" url="http://netnexus.de?src=camelCase">NetNexus</vendor>
+    <id>io.github.qaz4042.camelcasefix</id>
+    <name>CamelCaseFix</name>
+    <version>1.0.0</version>
+    <vendor url="https://github.com/qaz4042/camelcaseplugin">qaz4042</vendor>
 
     <description><![CDATA[
       Switch easily between kebab-case, SNAKE_CASE, PascalCase, camelCase, snake_case or space case. See Edit menu or use ⇧ + ⌥ + U / Shift + Alt + U.
@@ -10,15 +10,17 @@
       Please have a look at the preferences of this plugin: 
       You can disable some conversions or change their order.
       <br />
-      If you find something is not working or missing, feel free to submit a PR on our GitHub repo.
+      This is a community-maintained fork of the original CamelCase plugin.
+      It fixes the missing Apache Commons Lang dependency on modern IntelliJ IDEs.
+      Source: https://github.com/qaz4042/camelcaseplugin
       ]]></description>
 
     <change-notes><![CDATA[
       <p>If you have any comments please let me know.</p>
 
-      <p>Release 3.0.12:
+      <p>Release 1.0.0:
       <ul>
-        <li>Bugfix: use standard config if com.intellij.openapi.project.Project is null</li>
+        <li>Fix missing WordUtils dependency on IntelliJ IDEA 2026.2+</li>
       </ul>
       </p>
 
@@ -26,7 +28,7 @@
     </change-notes>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="193.5233.102"/>
+    <idea-version since-build="262"/>
 
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
          on how to target different products -->
@@ -44,7 +46,7 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="de.netnexus.CamelCasePlugin.ToggleCamelCase" class="de.netnexus.CamelCasePlugin.ToggleCamelCase"
+        <action id="io.github.qaz4042.camelcasefix.ToggleCamelCase" class="de.netnexus.CamelCasePlugin.ToggleCamelCase"
                 text="Toggle Camel Case"
                 description="Switches between CamelCase, camelCase and snake_case">
             <add-to-group group-id="EditSmartGroup" anchor="after" relative-to-action="EditorToggleCase"/>
@@ -56,7 +58,7 @@
         <!-- Add your extensions here -->
         <projectService
                 serviceImplementation="de.netnexus.CamelCasePlugin.CamelCaseConfig"/>
-        <projectConfigurable groupId="editor" displayName="Camel Case" id="preferences.CamelCasePlugin"
+        <projectConfigurable groupId="editor" displayName="Camel Case" id="io.github.qaz4042.camelcasefix.preferences"
                              instance="de.netnexus.CamelCasePlugin.CamelCasePluginConfigurable"/>
     </extensions>
 </idea-plugin>
